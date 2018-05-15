@@ -1,6 +1,6 @@
 [user]
-    name = Ansel Santosa
-    email = anstosa@gmail.com
+    name = Ben Rush
+    email = brush701@gmail.com
 [color]
     ui = auto
 [alias]
@@ -35,3 +35,6 @@
 	diffFilter = diff-highlight
 [log]
 	date = local
+
+[credential]
+	helper = cache --timeout 28800

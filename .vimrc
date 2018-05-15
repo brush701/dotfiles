@@ -161,16 +161,16 @@ set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set hidden                          " Allow buffer switching without saving
 set showmatch                       " Highlight matches on search
 set winminheight=0                  " Allow windows to collapse entirely
-set spell                           " Enable spellcheck
 set number                          " Enable line numbers
-set nowrap                          " Don't wrap long lines
+set wrap                          " Don't wrap long lines
+set linebreak
 set lazyredraw                      " Speed up display
 set ttyfast                         " Speed up display
 " Highlight the current line
 set cursorline
 highlight CursorLine cterm=none ctermbg=8
 " Show whitespace
-set list
+set nolist "
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 autocmd BufNewFile,BufRead * :highlight BadForm ctermbg=11 ctermfg=8
 autocmd BufNewFile,BufRead * :match BadForm /\s\+$/
@@ -182,7 +182,8 @@ set fo-=t
 set colorcolumn=81
 highlight ColorColumn ctermbg=0
 
-
+set textwidth=80
+set wrapmargin=0
 " Cursor =======================================================================
 set mouse-=a                        " Disable visual selection with mouse
 set iskeyword-=.                    " '.' is an end of word designator
@@ -236,7 +237,8 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>tt :tabnext<cr>
 
-
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 " Splits =======================================================================
 set splitright                          " Open new splits to right of current
 set splitbelow                          " Open new splits below current
