@@ -31,7 +31,20 @@ case "$choice" in
         makeLink .inputrc
 
         echo "Linking powerline..."
+        mkdir ~/.config
         ln -sfn $DIR/powerline ~/.config/powerline
+
+        if ! type pyenv >dev/null 2>&1; then
+            echo "Installing pyenv..."
+            git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+            echo "Installed."
+        fi
+
+        if ! type pyenv virtualenv-init 2>&1; then
+            echo "Installing pyenv-virtualenv..."
+            git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+            echo "Installed."
+        fi
 
         echo "Hotswapping bash config..."
         source .bashrc
