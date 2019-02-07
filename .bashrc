@@ -1,11 +1,11 @@
 # ~/.bashrc
 GOPATH=$HOME/go
-PATH=$HOME/.local/bin:$HOME/.dotfiles/bin:$PATH:$GOPATH/bin
+PATH=$HOME/.local/bin:$HOME/.dotfiles/bin:$PATH:$GOPATH/bin:/usr/local/go/bin
 export PYTHONPATH=$PYTHONPATH:$HOME
 export LANG=en_US.UTF-8
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+eval "$(pipenv --completion)"
+# Make X11 work on WSL
+export DISPLAY=localhost:0.0
 
 # History
 HISTSIZE=50000
@@ -33,6 +33,7 @@ alias grep='grep --color=auto'
 alias fix='stty sane'
 
 alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get install update-manager-core && sudo apt-get -f install && sudo apt-get autoremove && sudo apt-get autoclean'
+alias venv='python3.6 -m venv env'
 
 # TMUX
 alias tmux='TERM=screen-256color-bce tmux -2 -u'
@@ -92,3 +93,9 @@ export -f strip_diff_leading_symbols
 rule () {
     printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ben/google-cloud-sdk/path.bash.inc' ]; then . '/home/ben/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ben/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ben/google-cloud-sdk/completion.bash.inc'; fi

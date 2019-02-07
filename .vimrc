@@ -9,6 +9,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+autocmd FileType html
+            \ setlocal formatprg=tidy\ -indent\ -quiet\ --show-errors\ 0\ --tidy-mark\ no\ --show-body-only\ auto
 call plug#begin('~/.vim/plugged')
 
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -22,6 +24,18 @@ Plug 'digitaltoad/vim-pug',
 Plug 'blueyed/vim-diminactive'
 Plug 'Shougo/vimproc.vim',
 Plug 'leafgarland/typescript-vim'
+
+Plug 'maksimr/vim-jsbeautify'
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
 
 Plug 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
@@ -64,11 +78,6 @@ Plug 'fatih/vim-go',            { 'for': 'go' }
 let g:go_fmt_command = "goimports"
 
 Plug 'christoomey/vim-tmux-navigator'
-nnoremap <silent> <C-Left>  :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-Down>  :TmuxNavigateDown<cr>
-nnoremap <silent> <C-Up>    :TmuxNavigateUp<cr>
-nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-~>     :TmuxNavigatePrevious<cr>
 
 Plug 'tpope/vim-fugitive'
 nnoremap <silent> <leader>gs :Gstatus<CR>
